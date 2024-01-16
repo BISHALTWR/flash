@@ -1,6 +1,6 @@
 'use client'
 import React, {useState} from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password'
 YupPassword(Yup) //extendyup
@@ -8,13 +8,14 @@ import FormSection from '@/components/formSection/page';
 import {Input} from "@nextui-org/react";
 import {Button} from '@nextui-org/react';
 import Link from 'next/link';
+import Navbar from '../../components/navbar/page';
 
 //For password input
 import { EyeFilledIcon } from './EyeFilledIcon';
 import { EyeSlashFilledIcon } from './EyeSlashFilledIcon';
 
 const SignupSchema = Yup.object().shape({
-    userName: Yup.string()
+    username: Yup.string()
         .min(2, 'Too Short!')
         .max(50, 'Too Long!')
         .required('Required'),
@@ -26,6 +27,8 @@ const Register = () => {
     const [isVisible,setIsVisible] = useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
     return (
+      <>
+      <Navbar register={false} login={true}/>
   <FormSection>
     <Formik
       initialValues={{
@@ -39,28 +42,37 @@ const Register = () => {
             console.log(values);
         }}
         >
-      {({ errors, touched }) => (
+      {({ errors, touched,handleChange }) => (
           <Form>
-            <h1 className='mb-4'>Create a new account: </h1>
-            <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-                {/* <Input type="usename" label="Username" /> */}
-                <Input type="usename" label="Usename" placeholder="Enter your username" className='mb-4'/>
-            </div>
-            {errors.lastName && touched.lastName ? (<div>{errors.lastName}</div>) : null}
+            <h1 className='mb-4 font-bold'>Create a new account: </h1>
+            <Input
+              type="username"
+              label="Username"
+              name="username"
+              variant="bordered"
+              placeholder="MonkeyFace101"
+              className="max-w-xs mt-4"
+              onChange={handleChange}
+            />
+            {errors.username && touched.username ? (<div className="ml-4">{errors.username}</div>) : null}
 
             <Input
             isClearable
             type="email"
             label="Email"
+            name="email"
+            variant='bordered'
             placeholder="you@example.com"
-            labelPlacement="outside"
-            className='mb-4'
+            labelPlacement="inside"
+            className='mt-4'
+            onChange={handleChange}
             />
+            {console.log(errors.email)}
             {errors.email && touched.email ? <div>{errors.email}</div> : null}
-          
             <Input
             label="Password"
             variant="bordered"
+            name="password"
             placeholder="Enter your password"
             endContent={
                 <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
@@ -72,15 +84,17 @@ const Register = () => {
                 </button>
             }
             type={isVisible ? "text" : "password"}
-            className="max-w-xs mb-4"
+            className="max-w-xs mt-4"
+            onChange={handleChange}
             />
-          {errors.password && touched.email ? <div>{errors.email}</div>: null}
+          {errors.password && touched.password ? <div>{errors.password}</div>: null}
 
-          <Button is={Link} color="success" href="/">Submit</Button>
+          <Button type="submit" name="submit" is={Link} color="success" className="mt-4" href="/">Submit</Button>
         </Form>
       )}
     </Formik>
   </FormSection>
+  </>
 )};
 
 export default Register;

@@ -1,6 +1,5 @@
 "use client"
 import  React from 'react'; // Required to use JSX syntax and create react components
-import Link from 'next/link'
 import Navbar from '../components/navbar/page';
 
 const Page = () => {
