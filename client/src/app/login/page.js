@@ -6,18 +6,13 @@ import * as Yup from 'yup';
 import YupPassword from 'yup-password'
 YupPassword(Yup) //extendyup
 import FormSection from '@/components/formSection/page';
-import Navbar from '../../components/navbar/page';
-
-//nextui
 import {Input} from "@nextui-org/react";
 import {Button} from '@nextui-org/react';
-
-//hot-toast
-import toast, {Toaster} from 'react-hot-toast';
-const notify = (msg) => toast(msg);
+import Link from 'next/link';
+import Navbar from '../../components/navbar/page';
 
 //For password input
-import { EyeFilledIcon } from './EyeFilledIcon';
+import { EyeFilledIcon } from '../register/EyeFilledIcon';
 import { EyeSlashFilledIcon } from './EyeSlashFilledIcon';
 
 const SignupSchema = Yup.object().shape({
@@ -25,36 +20,42 @@ const SignupSchema = Yup.object().shape({
         .min(2, 'Too Short!')
         .max(50, 'Too Long!')
         .required('Required'),
-    email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string().password('Do better').required('Password required'),
 });
 
 const Register = () => {
-  // const router = useRouter();
   const [isVisible,setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   
   const handleRegister = async (inputFields) => {
-      const res = await fetch('http://localhost:4000/register', {
+      // console.log(inputFields);
+      const response = await fetch('http://localhost:4000/register',{
         method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(inputFields),
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify(inputFields)
       });
-      const data = await res.json();
-      notify(data.msg);
-  };
+      if(!response.ok) {
+        throw new Error(`HTTP error! status ${response.status}`);
+      }
+      return response.json();
+    }
     
     const onSubmit=async (values) => {
-      handleRegister(values);
+      // const router = useRouter();
+      // console.log(values);
+      const response = await handleRegister(values);
+      if(response) {
+        console.log("hello")
+        // router.push('/')
+      }
     }
     return (
       <>
-      <Navbar hideRegister={true}/>
+      <Navbar hideLogin={true}/>
   <FormSection>
     <Formik
       initialValues={{
           username: '',
-          email: '',
           password: ''
         }}
         validationSchema={SignupSchema}
@@ -63,8 +64,7 @@ const Register = () => {
         >
       {({ errors, touched,handleChange }) => (
           <Form>
-            <Toaster/>
-            <h1 className='mb-4 font-bold'>Create a new account: </h1>
+            <h1 className='mb-4 font-bold'>Login: </h1>
             <Input
               type="username"
               label="Username"
@@ -76,19 +76,6 @@ const Register = () => {
             />
             {errors.username && touched.username ? (<div className="ml-4">{errors.username}</div>) : null}
 
-            <Input
-            isClearable
-            type="email"
-            label="Email"
-            name="email"
-            variant='bordered'
-            placeholder="you@example.com"
-            labelPlacement="inside"
-            className='mt-4'
-            onChange={handleChange}
-            />
-            {/* {console.log(errors.email)} */}
-            {errors.email && touched.email ? <div>{errors.email}</div> : null}
             <Input
             label="Password"
             variant="bordered"
@@ -109,7 +96,7 @@ const Register = () => {
             />
           {errors.password && touched.password ? <div>{errors.password}</div>: null}
 
-          <Button type="submit" name="submit" color="success" className="mt-4 mx-auto">Submit</Button>
+          <Button type="submit" name="submit" color="success" className="mt-4">Login</Button>
         </Form>
       )}
     </Formik>

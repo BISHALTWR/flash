@@ -1,3 +1,5 @@
 - login
 - register
 - design to root (navbar)
+
+sudo service mongod start
