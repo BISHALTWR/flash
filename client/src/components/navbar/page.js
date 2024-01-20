@@ -1,13 +1,13 @@
 import React from "react";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@nextui-org/react";
-import Logo from '../logo'
+import { FaCode } from "react-icons/fa";
 
 const page = (props)=>{
 return (
     <Navbar shouldHideOnScroll>
         <NavbarBrand as={Link} href="./">
-            <Logo width={36} height={36}/>
-            <p className="font-bold text-inherit">Bookquest</p>
+            <FaCode/>
+            <p className="font-bold text-inherit">{" "}Flash</p>
         </NavbarBrand>
         <NavbarContent justify="end">
             <NavbarItem>

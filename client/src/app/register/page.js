@@ -1,6 +1,6 @@
 'use client'
 import React, {useState} from 'react';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation'; //for app router
 import { Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password'
@@ -30,23 +30,30 @@ const SignupSchema = Yup.object().shape({
 });
 
 const Register = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const [isVisible,setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   
   const handleRegister = async (inputFields) => {
-      const res = await fetch('http://localhost:4000/register', {
+    try {
+      const response = await fetch('http://localhost:4000/register', {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(inputFields),
       });
-      const data = await res.json();
-      notify(data.msg);
+      const data = await response.json();
+      notify(data.msg + (response.status === 200 ? '✅' : '❌'));
+      if (response.status === 200) {
+        router.push('./login');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
     
     const onSubmit=async (values) => {
       handleRegister(values);
-    }
+    };
     return (
       <>
       <Navbar hideRegister={true}/>
@@ -58,12 +65,10 @@ const Register = () => {
           password: ''
         }}
         validationSchema={SignupSchema}
-
         onSubmit={onSubmit}
         >
       {({ errors, touched,handleChange }) => (
           <Form>
-            <Toaster/>
             <h1 className='mb-4 font-bold'>Create a new account: </h1>
             <Input
               type="username"
@@ -77,7 +82,6 @@ const Register = () => {
             {errors.username && touched.username ? (<div className="ml-4">{errors.username}</div>) : null}
 
             <Input
-            isClearable
             type="email"
             label="Email"
             name="email"
