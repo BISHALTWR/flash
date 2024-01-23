@@ -8,47 +8,62 @@ YupPassword(Yup) //extendyup
 import FormSection from '@/components/formSection/page';
 import {Input} from "@nextui-org/react";
 import {Button} from '@nextui-org/react';
-import Link from 'next/link';
 import Navbar from '../../components/navbar/page';
+import { useDispatch } from 'react-redux';
+import {loginUser} from '@/redux/reducerSlices/userSlice'
 
 //For password input
 import { EyeFilledIcon } from '../register/EyeFilledIcon';
 import { EyeSlashFilledIcon } from './EyeSlashFilledIcon';
+
+//hot-toast
+import toast, {Toaster} from 'react-hot-toast';
+const notify = (msg) => toast(msg);
 
 const SignupSchema = Yup.object().shape({
     username: Yup.string()
         .min(2, 'Too Short!')
         .max(50, 'Too Long!')
         .required('Required'),
-    password: Yup.string().password('Do better').required('Password required'),
+    password: Yup.string().required('Password required'),
 });
 
-const Register = () => {
+const Login = () => {
   const [isVisible,setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  
-  const handleRegister = async (inputFields) => {
-      // console.log(inputFields);
-      const response = await fetch('http://localhost:4000/register',{
+  const dispatch = useDispatch();
+  const handleLogin = async (inputFields, resetForm) => {
+    try{
+    const response = await fetch('http://localhost:4000/login/',{
         method: 'POST',
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify(inputFields)
       });
-      if(!response.ok) {
-        throw new Error(`HTTP error! status ${response.status}`);
+      const data = await response.json();
+      if(response.status == 201){
+        console.log(data);
+        dispatch(loginUser(data));
+        resetForm({});
       }
-      return response.json();
+      notify( data.msg,
+        {
+          icon: response.status == 201 ? '✅' : '❌',
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      );
+    } catch(err) {
+      console.log(err)
+    } 
     }
     
-    const onSubmit=async (values) => {
-      // const router = useRouter();
-      // console.log(values);
-      const response = await handleRegister(values);
-      if(response) {
-        console.log("hello")
-        // router.push('/')
-      }
+    const onSubmit=async (values, formikBag) => {
+      await handleLogin(values, formikBag.resetForm);
     }
+
     return (
       <>
       <Navbar hideLogin={true}/>
@@ -104,4 +119,4 @@ const Register = () => {
   </>
 )};
 
-export default Register;
+export default Login;

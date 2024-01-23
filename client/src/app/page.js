@@ -12,14 +12,14 @@ const Page = () => {
         setValue(val);
     }, []);
     return ( // Every html (jsx) component lies inside this (component shown in page)
-        <div>
+        <>
             <Navbar/>
             <section className="text-gray-600 body-font">
                 <div className='m-10'>
                     <CodeMirror value={value} height="80vh" extensions={[javascript({ jsx: true })]} onChange={onChange} theme={okaidia}/>
                 </div>
                 </section>
-        </div>
+        </>
     )
 }
 
