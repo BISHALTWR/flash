@@ -11,6 +11,7 @@ import {Button} from '@nextui-org/react';
 import Navbar from '../../components/navbar/page';
 import { useDispatch } from 'react-redux';
 import {loginUser} from '@/redux/reducerSlices/userSlice'
+import { useRouter } from 'next/navigation';
 
 //For password input
 import { EyeFilledIcon } from '../register/EyeFilledIcon';
@@ -29,6 +30,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 const Login = () => {
+  const router = useRouter();
   const [isVisible,setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const dispatch = useDispatch();
@@ -43,7 +45,7 @@ const Login = () => {
       if(response.status == 201){
         console.log(data);
         dispatch(loginUser(data));
-        resetForm({});
+        router.push('/profile');
       }
       notify( data.msg,
         {
