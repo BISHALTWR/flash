@@ -6,6 +6,7 @@ import { javascript } from '@codemirror/lang-javascript';
 import { okaidia } from '@uiw/codemirror-theme-okaidia';
 
 const Page = () => {
+    const output = "";
     const [value, setValue] = React.useState("console.log('hello world!');");
     const onChange = React.useCallback((val, viewUpdate) => {
         console.log('val:', val);
@@ -15,8 +16,13 @@ const Page = () => {
         <>
             <Navbar/>
             <section className="text-gray-600 body-font">
+
                 <div className='m-10'>
                     <CodeMirror value={value} height="80vh" extensions={[javascript({ jsx: true })]} onChange={onChange} theme={okaidia}/>
+                </div>
+
+                <div id="Output">
+                    {output}
                 </div>
                 </section>
         </>

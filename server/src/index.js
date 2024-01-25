@@ -8,7 +8,7 @@ const userRoute = require('./routes/users')
 const connection = require('./db/connection')
 connection()
 const port = process.env.PORT
-app.use(userRoute)
+app.use(userRoute);
 
 
 app.listen(port, () => {
