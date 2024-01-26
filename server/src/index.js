@@ -9,6 +9,7 @@ const connection = require('./db/connection')
 connection()
 const port = process.env.PORT
 app.use(userRoute);
+// console.log = console.trace;
 
 
 app.listen(port, () => {
