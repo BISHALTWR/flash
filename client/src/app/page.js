@@ -14,7 +14,7 @@ const Page = () => {
         console.log('value:', value);
         setValue(value);
     }, []);
-    const onRun = React.useCallback(async (value)=>{
+    const Run = React.useCallback(async (value)=>{
         // setOutput(JSON.stringify(value));
         try{
             const response = await fetch('http://localhost:4000/executeJS/',{
@@ -36,30 +36,39 @@ const Page = () => {
                 setOutput(err)
             }
     });
+    const Save = React.useCallback(async (value)=>{
+        try{
+            const response = await fetch('http://localhost:4000/saveCode/',{
+                method: 'POST',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    "id": "tryID",
+                    "code": value
+                })
+            });
+            console.log(response);
+        } catch(err) {
+            console.log(err);
+        }
+    })
     return(
         <>
             <Navbar/>
-            {/* <section classNameName="text-gray-600 body-font relative">
-
-                <div classNameName='container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap outline'>
-                    <CodeMirror value={value} extensions={[javascript({ jsx: true })]} onChange={onChange} theme={okaidia}/>
-                    <Button onClick={() => onRun(value)}>Run</Button>
-                </div>
-
-                <div id="Output" classNameName='lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0 outline'>
-                    {output}
-                </div>
-            </section> */}
-
-            <div className='flex w-full mt-10'>
+            <div height="90vh" className='flex w-full mt-10'>
                 <div className = 'box-border content-center w-2/5 float-left ml-10 rounded bg-neutral-300'>
                     <CodeMirror value={value} height="80vh" extensions={[javascript({ jsx: true })]} onChange={onChange} theme={okaidia}/>
                     <div className = 'content-center'>
-                        <Button onClick={() => onRun(value)} className="content-center bg-emerald-500">Run</Button>
+                        <Button onClick={() => Run(value)} className="content-center bg-emerald-500">Run</Button>
+                        <Button onClick={() => Save(value)} className="content-center bg-emerald-500">Save</Button>
                     </div>
                 </div>
-                <div className='box-border w-2/5 float-right mr-10 ml-10 pl-5 pr-5 pt-1 pb-1 rounded bg-neutral-300'>
-                    {output}
+                <div  className='h-[80vh] box-border w-2/5 float-right mr-10 ml-10 pl-5 pr-5 pt-1 pb-1 rounded bg-neutral-300 overflow-y-scroll'>
+                    {/* {output} */}
+                    {
+                        output.split('\n').map((value,index)=>{
+                            return <p>{value}</p>
+                        })
+                    }
                 </div>
             </div>
 
