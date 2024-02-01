@@ -29,7 +29,8 @@ npm run dev
 
 - [x] Add Register, Login page
 - [x] Add Syntax Highlighting for JS with CodeMirror
-- [ ] Add Support for other languages
+- [x] Add JS execution
+- [ ] Add Syntax highlighting Support for other languages
 - [ ] Add Compilers for different languages
 - [ ] Add copy button for copying code
 - [ ] Add Profile page
