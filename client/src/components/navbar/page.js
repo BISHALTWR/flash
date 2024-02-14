@@ -21,12 +21,12 @@ return (
         </NavbarBrand>
         <NavbarContent justify="end">
             <NavbarItem>
-            <Button as={Link} color="primary" href="./login" variant="flat" style={props.hideLogin?{display: "none"}:{}}>
+            <Button as={Link} color="primary" href="./login" variant="flat" style={(props.hideLogin||isLoggedIn)?{display: "none"}:{}}>
                 Login
             </Button>
             </NavbarItem>
             <NavbarItem>
-            <Button as={Link} color="primary" href="./register" variant="solid" style={props.hideRegister?{display: "none"}:{}}>
+            <Button as={Link} color="primary" href="./register" variant="solid" style={(props.hideRegister||isLoggedIn)?{display: "none"}:{}}>
                 Register
             </Button>
             </NavbarItem>
@@ -38,26 +38,19 @@ return (
             isBordered
             as="button"
             className="transition-transform"
-            src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+            src={`https://i.pravatar.cc/150?u=${userDetails.username.charAt(0)}`}
           />
         </DropdownTrigger>
         <DropdownMenu aria-label="Profile Actions" variant="flat">
-          <DropdownItem key="profile" className="h-14 gap-2">
+          <DropdownItem key="profile" className="h-14 gap-2" as={Link} href="./profile">
             <p className="font-semibold">Signed in as</p>
             <p className="font-semibold">{userDetails.email}</p>
           </DropdownItem>
+
           <DropdownItem key="settings">
             My Settings
           </DropdownItem>
-          <DropdownItem key="team_settings">Team Settings</DropdownItem>
-          <DropdownItem key="analytics">
-            Analytics
-          </DropdownItem>
-          <DropdownItem key="system">System</DropdownItem>
-          <DropdownItem key="configurations">Configurations</DropdownItem>
-          <DropdownItem key="help_and_feedback">
-            Help & Feedback
-          </DropdownItem>
+
           <DropdownItem key="logout" color="danger" onClick={()=>dispatch(logoutUser())}>
             Log Out
           </DropdownItem>

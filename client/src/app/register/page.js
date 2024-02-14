@@ -26,7 +26,8 @@ const SignupSchema = Yup.object().shape({
         .max(50, 'Too Long!')
         .required('Required'),
     email: Yup.string().email('Invalid email').required('Required'),
-    password: Yup.string().password('Do better').required('Password required'),
+    // password: Yup.string().password('Do better').required('Password required'),
+    password: Yup.string().required("Password required")
 });
 
 const Register = () => {
