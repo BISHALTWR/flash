@@ -14,13 +14,13 @@ const page = (props)=>{
     const dispatch = useDispatch();
     const {isLoggedIn, userDetails} = useSelector(state => state.user)
 return (
-    <Navbar shouldHideOnScroll className="text-white">
+    <Navbar shouldHideOnScroll className="text-white bg-primary-600">
         <NavbarBrand as={Link} href="/">
-            <FaCode/>
-            <p className="font-bold text-inherit">{" "}Flash</p>
+            <FaCode color="white"/>
+            <p className="font-bold text-white">{" "}Flash</p>
         </NavbarBrand>
-        <NavbarContent justify="center">
-          <h1 className="text-blue-800">{props.file_name}</h1>
+        <NavbarContent justify="center" >
+          <h1 className="font-bold text-white uppercase">{props.navbarText}</h1>
         </NavbarContent>
         <NavbarContent justify="end">
             <NavbarItem>
@@ -43,19 +43,19 @@ return (
               src={`https://i.pravatar.cc/150?u=${isLoggedIn?userDetails.username.charAt(0):"b"}`}
             />
           </DropdownTrigger>
-          <DropdownMenu aria-label="Profile Actions" variant="flat">
+          <DropdownMenu aria-label="Profile Actions" variant="bordered">
             <DropdownItem key="profile" className="h-14 gap-2">
-              <p className="font-semibold">Signed in as</p>
+              <p className="font-semibold">Logged in as</p>
               <p className="font-semibold">{userDetails.email}</p>
             </DropdownItem>
-            <DropdownItem key="my_codes" as={Link} href="./code">
+            <DropdownItem key="my_codes" className="text-normal" as={Link} href="/code">
               My Codes
             </DropdownItem>
-            <DropdownItem key="settings">
+            <DropdownItem key="settings" className="text-normal" as={Link} href='/settings'>
               My Settings
             </DropdownItem>
 
-            <DropdownItem key="logout" color="danger" onClick={()=>dispatch(logoutUser())}>
+            <DropdownItem key="logout" className="text-danger" onClick={()=>dispatch(logoutUser())}>
               Log Out
             </DropdownItem>
           </DropdownMenu>

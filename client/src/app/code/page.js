@@ -80,9 +80,9 @@ const page = () => {
               console.log(codeSnippet,"Code snippet");
               return (<CodeBlock code={codeSnippet} file_name={fileNames[index]} fileNames={fileNames} user_id={user_id}></CodeBlock>)
             })}
-          <div className="p-2 lg:w-1/4 md:w-1/2 w-full -m-4 min-w-[400px]">
+          <div className="p-2 lg:w-2/6 md:w-1/2 w-full -m-4 min-w-[500px]">
             <div className = "h-60 overflow-hidden border border-t-4 border-gray-600 rounded-[15px] m-4 bg-white flex justify-center items-center">
-              <Button onPress={onOpen}><VscAdd/></Button>
+              <Button onPress={onOpen} color="success"><VscAdd/></Button>
               <Modal 
         isOpen={isOpen} 
         onOpenChange={onOpenChange}
@@ -110,8 +110,8 @@ const page = () => {
                 <Button color="danger" variant="flat" onPress={onClose}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose} onClick={()=>{CreateNewFile(NewFileName)}}>
-                  Open New file
+                <Button color="success" onPress={onClose} onClick={()=>{CreateNewFile(NewFileName)}}>
+                  Create and Open
                 </Button>
               </ModalFooter>
             </>

@@ -18,7 +18,7 @@ import { EyeFilledIcon } from '../register/EyeFilledIcon';
 import { EyeSlashFilledIcon } from './EyeSlashFilledIcon';
 
 //hot-toast
-import toast, {Toaster} from 'react-hot-toast';
+import toast from 'react-hot-toast';
 const notify = (msg) => toast(msg);
 
 const SignupSchema = Yup.object().shape({

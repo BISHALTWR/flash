@@ -1,66 +1,95 @@
-"use client"
-import  React, {useState, useEffect} from 'react';
-import Navbar from '../components/navbar/page';
-import CodeMirror from '@uiw/react-codemirror';
-import { javascript } from '@codemirror/lang-javascript';
-import { okaidia } from '@uiw/codemirror-theme-okaidia';
-import {Button,Input} from '@nextui-org/react';
-import { useSelector, useDispatch } from "react-redux"; // For userdetails
-import { useSearchParams } from 'next/navigation';
-import {Run, Save} from '../components/codeFuntions/page';
-import Split from 'react-split'
-import { VscRunAll } from "react-icons/vsc";
-import { AiOutlineSave } from "react-icons/ai";
+'use client'
+import React from 'react'
+import Navbar from '../components/navbar/page'
+import { VscVmRunning } from "react-icons/vsc";
+import { SiLevelsdotfyi } from "react-icons/si";
+import { GiBattleGear } from "react-icons/gi";
+import { FaBookReader } from "react-icons/fa";
+import { FaRegCircleQuestion } from "react-icons/fa6";
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
-const Page = () => {
-    const {isLoggedIn, userDetails} = useSelector(state => state.user); // User details
-    const user_id=userDetails._id;
-    const [output, setOutput] = React.useState("");
-    const [value, setValue] = React.useState("");
-    const [file_name, setFileName] = useState("");
-    const params = useSearchParams();
-    const receivedFileName = params.get("filename")
-    
-    useEffect(() => {
-        if (receivedFileName) {
-            setFileName(receivedFileName);
-            console.log(receivedFileName);
-        }
-    }, [receivedFileName]);
-
-    const onChange = (value) => {
-        console.log('value:', value);
-        setValue(value);
-    };
-                
-    return (
-        <div className='w-[100vw] h-[100vh]'>
-            <Navbar file_name={file_name?file_name:"Untitled"}/>
-            <div style={{alignSelf:"center"}} className='ml-[5vw] w-[fit-content] mt-[5px] mb-[5px]'>
-                <Button onClick={async () => {
-                    const result = await Run(value)
-                    setOutput(result);
-                    }}
-                    className="content-center bg-sky-500"
-                ><VscRunAll /></Button>
-                <Button onClick={() => Save(value,file_name,user_id)} className="content-center bg-emerald-500 ml-4 mr-4"><AiOutlineSave /></Button>
+const page = () => {
+  const { isLoggedIn, userDetails }  = useSelector(state => state.user);
+  console.log(isLoggedIn);
+  return (
+    <>
+      <Navbar/>
+      <section class="text-gray-600 body-font">
+          <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap w-full mb-20 flex-col items-center text-center">
+              <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Flash</h1>
+              <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Multipurpose tool for getting better at programming.</p>
             </div>
-            <Split className="split max-w-[90vw] ml-auto mr-auto outline-1 rounded-[20px] overflow-hidden" minSize={250} >
-                <div style={{display:'flex',flexDirection:"column", gap:"5px"}}>
-                    <div className="rounded-[20px] overflow-hidden">
-                        <CodeMirror value={value} height="80vh" extensions={[javascript({ jsx: true })]} onChange={onChange} t/>
+
+            <div class="flex flex-wrap -m-4">
+
+              <div class="xl:w-1/3 md:w-1/2 p-4">
+                <Link href={!isLoggedIn?"./compiler":"./code"} className='hover:underline decoration-emerald-500'>
+                  <div class="border border-gray-200 p-6 rounded-lg hover:bg-blue-100">
+                    <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
+                      <VscVmRunning />
                     </div>
+                      <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Execute Code</h2>
+                    <p class="leading-relaxed text-base">Use our web based compilers to execute your code online without hassle of setting up IDEs and Compilers</p>
+                  </div>
+                </Link>
+              </div>
+
+              <div class="xl:w-1/3 md:w-1/2 p-4">
+                <div class="border border-gray-200 p-6 rounded-lg">
+                  <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
+                    <SiLevelsdotfyi />
+                  </div>
+                  <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Complete Challenges</h2>
+                  <p class="leading-relaxed text-base">Practice programming under pressure with our timed test that come in variety of difficulty level</p>
                 </div>
-                <div style={{height:"80vh"}} className='p-[10px] bg-white rounded-[20px]'>
-                    {
-                        output.split('\n').map((value,index)=>{
-                            return <p>{value}</p>
-                        })
-                    }
+              </div>
+
+              <div class="xl:w-1/3 md:w-1/2 p-4">
+                <div class="border border-gray-200 p-6 rounded-lg">
+                  <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
+                    <GiBattleGear />
+                  </div>
+                  <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Compete</h2>
+                  <p class="leading-relaxed text-base">More of a team player? Challenge your friends or strangers to coding challenges.</p>
                 </div>
-            </Split>
-        </div>
-    )
+              </div>
+
+              <div class="xl:w-1/3 md:w-1/2 p-4">
+                <div class="border border-gray-200 p-6 rounded-lg">
+                  <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
+                    <FaBookReader />
+                  </div>
+                  <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Learn</h2>
+                  <p class="leading-relaxed text-base">Dont know where to start? Navigate through recommended resources to learn programming</p>
+                </div>
+              </div>
+
+              <div class="xl:w-1/3 md:w-1/2 p-4">
+                <div class="border border-gray-200 p-6 rounded-lg">
+                  <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
+                    <FaRegCircleQuestion />
+                  </div>
+                  <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Coming Soon...</h2>
+                  <p class="leading-relaxed text-base">We are planning to add some more resources soon. Good some suggestions?</p>
+                </div>
+              </div>
+
+              <div class="xl:w-1/3 md:w-1/2 p-4">
+                <div class="border border-gray-200 p-6 rounded-lg">
+                  <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
+                    <FaRegCircleQuestion />
+                  </div>
+                  <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Coming Soon...</h2>
+                  <p class="leading-relaxed text-base">We are planning to add some more resources soon. Good some suggestions?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </>
+  )
 }
 
-export default Page; // This allows you to import and use this component in other files
+export default page
