@@ -46,7 +46,7 @@ return (
           <DropdownMenu aria-label="Profile Actions" variant="bordered">
             <DropdownItem key="profile" className="h-14 gap-2">
               <p className="font-semibold">Logged in as</p>
-              <p className="font-semibold">{userDetails.email}</p>
+              <p className="font-semibold">{userDetails?.email}</p>
             </DropdownItem>
             <DropdownItem key="my_codes" className="text-normal" as={Link} href="/code">
               My Codes

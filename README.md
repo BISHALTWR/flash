@@ -11,6 +11,14 @@ npm install
 
 ## Usage
 
+-- On serverside (i.e. flash/server create `.env` and add: 
+
+```js
+PORT=4000 //or some other port id
+SECRET_KEY=`some value here` // some random string
+```
+)
+
 ```bash
 cd /client
 npm run dev
@@ -30,6 +38,7 @@ npm run dev
 - [x] Add Register, Login page
 - [x] Add Syntax Highlighting for JS with CodeMirror
 - [x] Add JS execution
+- [x] Database integration
 - [ ] Add Syntax highlighting Support for other languages
 - [ ] Add Compilers for different languages
 - [ ] Add copy button for copying code

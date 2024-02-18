@@ -61,7 +61,7 @@ const page = () => {
         console.log(data,response);
         if(response.ok){
           notify("File created successfully ✅");
-          router.push(`./?filename=${file_name}`)
+          router.push(`./compiler/?filename=${file_name}`)
         }
       }
   } catch(err) {
