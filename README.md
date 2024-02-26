@@ -1,4 +1,5 @@
 # Flash
+
 Flash is a web based code execution platform.
 
 ## Installation
@@ -11,12 +12,13 @@ npm install
 
 ## Usage
 
--- On serverside (i.e. flash/server create `.env` and add: 
+-- On serverside (i.e. flash/server create `.env` and add:
 
 ```js
-PORT=4000 //or some other port id
-SECRET_KEY=`some value here` // some random string
+PORT = 4000; //or some other port id
+SECRET_KEY = `some value here`; // some random string
 ```
+
 )
 
 ```bash
@@ -27,11 +29,12 @@ npm run dev
 cd /server
 npm run dev
 ```
+
 ### Built With
 
-* Frontend: Next.js
-* Backend: Express, Node.js
-* Database: Mongodb
+- Frontend: Next.js
+- Backend: Express, Node.js
+- Database: Mongodb
 
 ## Roadmap
 
@@ -44,7 +47,6 @@ npm run dev
 - [ ] Add copy button for copying code
 - [ ] Add Profile page
 - [ ] Add feature that allows you to download code snipppets as image
-
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
@@ -64,10 +66,3 @@ Don't forget to give the project a star! Thanks again!
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-
-
-
-
-
-

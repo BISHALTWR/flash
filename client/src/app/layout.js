@@ -1,24 +1,22 @@
-import { Inter } from 'next/font/google'
-import './globals.css'
-import {Providers} from "./providers";
-import ReduxProvider from '@/redux/provider'
-const inter = Inter({ subsets: ['latin'] })
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Providers } from "./providers";
+import ReduxProvider from "@/redux/provider";
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: 'Flash',
-  description: 'Run your code',
-}
+  title: "Flash",
+  description: "Run your code",
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
-          <Providers>
-            {children}
-          </Providers>
+          <Providers>{children}</Providers>
         </ReduxProvider>
       </body>
     </html>
-  )
+  );
 }

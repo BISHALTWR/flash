@@ -30,14 +30,11 @@ router.post("/rename", rename);
 router.post("/removeFile", removeFile);
 
 router.post("/saveChallenge", saveChallenge);
-router.get(
-  "/fetchChallenge/:challenge_id",
-  fetchChallengeById
-);
+router.get("/fetchChallenge/:challenge_id", fetchChallengeById);
 // router.post("/removeChallenge", removeChallengeById);
 router.get(
   "/fetchChallengesInRange/:user_id/:lower/:upper",
-  fetchChallengesInRange
+  fetchChallengesInRange,
 );
 
 module.exports = router;
