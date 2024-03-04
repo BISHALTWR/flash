@@ -1,1 +1,19 @@
-You are in saveChallenge.js
+Checklist:
+1. Add editChallenge
+2. Add deleteChallenge
+3. Add modal for details in challenge list
+4. Add somewhere around 20 challenges that admin adds which area added automatically
+5. Modify Setting Page, Add avatar, add user preference in schema
+6. Keep track of challenges that user has solved. (Maybe array of challenge id)
+7. Add a resource section with links to free resources. (Shouldn't take long)
+8. Add collaboration feature(based on groups with groupId)
+9. Add feature to notify all users on challenge addition
+10. Add FAQ section (have fun)
+11. Add highlighting support to other languages (Maybe add something to show that you cannot run other codes!(coming soon?!))
+12. Let users challenge friends to their custom challenge
+13. Add dark mode
+14. Add user walkthrough
+15. Optimize code, Improve UI
+
+
+** Use html2canvas, wkhtmltoimage or puppeteer to add codesnippet download feature

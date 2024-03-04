@@ -131,3 +131,6 @@ dist
 
 # User input code
 server/code.js
+
+# files
+/uploads
