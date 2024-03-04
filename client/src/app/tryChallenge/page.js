@@ -115,8 +115,9 @@ const page = () => {
                           block: "start",
                         });
                         if (result === actual_output) {
-                          console.log("✅ Correct");
+                          notify("✅ Correct");
                         } else {
+                          // console.log("Actual output: ", actual_output, "Your output: ", result);
                           notify("❌ Wrong! Try again!");
                         }
                       }}

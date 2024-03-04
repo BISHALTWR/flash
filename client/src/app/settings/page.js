@@ -9,268 +9,113 @@ const page = () => {
   return (
     <>
       <Navbar navbarText="Settings"></Navbar>
-      <div class="mx-4 min-h-screen max-w-screen-xl sm:mx-8 xl:mx-auto">
-        <div class="grid grid-cols-8 pt-3 sm:grid-cols-10">
-          <div class="relative my-4 w-56 sm:hidden">
-            <input
-              class="peer hidden"
-              type="checkbox"
-              name="select-1"
-              id="select-1"
-            />
-            <label
-              for="select-1"
-              class="flex w-full cursor-pointer select-none rounded-lg border p-2 px-3 text-sm text-gray-700 ring-blue-700 peer-checked:ring"
-            >
-              Notifications{" "}
-            </label>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="pointer-events-none absolute right-0 top-3 ml-auto mr-5 h-4 text-slate-700 transition peer-checked:rotate-180"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-            <ul class="max-h-0 select-none flex-col overflow-hidden rounded-b-lg shadow-md transition-all duration-300 peer-checked:max-h-56 peer-checked:py-3">
-              <li class="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-blue-700 hover:text-white">
+<div class="bg-white w-full flex flex-col gap-5 px-3 md:px-16 lg:px-28 md:flex-row text-[#161931]">
+    <aside class="hidden py-4 md:w-1/3 lg:w-1/4 md:block">
+        <div class="sticky flex flex-col gap-2 p-4 text-sm border-r border-indigo-100 top-12">
+
+            <h2 class="pl-3 mb-4 text-2xl font-semibold">Settings</h2>
+
+            <a href="#" class="flex items-center px-3 py-2.5 font-bold bg-white  text-indigo-900 border rounded-full">
+                Pubic Profile
+            </a>
+            <a href="#"
+                class="flex items-center px-3 py-2.5 font-semibold  hover:text-indigo-900 hover:border hover:rounded-full">
+                Account Settings
+            </a>
+            <a href="#"
+                class="flex items-center px-3 py-2.5 font-semibold hover:text-indigo-900 hover:border hover:rounded-full  ">
                 Notifications
-              </li>
-              <li class="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-blue-700 hover:text-white">
-                Team
-              </li>
-              <li class="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-blue-700 hover:text-white">
-                Others
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-span-2 hidden sm:block">
-            <ul>
-              <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">
-                Teams
-              </li>
-              <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">
-                Accounts
-              </li>
-              <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">
-                Users
-              </li>
-              <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">
-                Profile
-              </li>
-              <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">
-                Billing
-              </li>
-              <li class="mt-5 cursor-pointer border-l-2 border-l-blue-700 px-2 py-2 font-semibold text-blue-700 transition hover:border-l-blue-700 hover:text-blue-700">
-                Notifications
-              </li>
-              <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">
-                Integrations
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-span-8 overflow-hidden rounded-xl bg-gray-50 px-8 shadow">
-            <div class="border-b pt-4 pb-8">
-              <h1 class="py-2 text-2xl font-semibold">Notification settings</h1>
-              <p class="font- text-slate-600">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              </p>
-            </div>
-            <div class="grid border-b py-6 sm:grid-cols-2">
-              <div class="">
-                <h2 class="text-lg font-semibold leading-4 text-slate-700">
-                  Comments
-                </h2>
-                <p class="font- text-slate-600">
-                  Lorem ipsum dolor, Alias eligendi laboriosam magni reiciendis
-                  neque.
-                </p>
-              </div>
-              <div class="mt-4 flex items-center sm:justify-end">
-                <div class="flex flex-col gap-3">
-                  <label
-                    for="push"
-                    class="relative inline-flex cursor-pointer items-center"
-                  >
-                    <input
-                      type="checkbox"
-                      value=""
-                      id="push"
-                      class="peer sr-only"
-                      checked
-                    />
-                    <div class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                      Push
-                    </span>
-                  </label>
-                  <label
-                    for="email"
-                    class="relative inline-flex cursor-pointer items-center"
-                  >
-                    <input
-                      type="checkbox"
-                      value=""
-                      id="email"
-                      class="peer sr-only"
-                      checked
-                    />
-                    <div class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                      Email
-                    </span>
-                  </label>
-                  <label
-                    for="sms"
-                    class="relative inline-flex cursor-pointer items-center"
-                  >
-                    <input
-                      type="checkbox"
-                      value=""
-                      id="sms"
-                      class="peer sr-only"
-                    />
-                    <div class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                      SMS
-                    </span>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div class="grid border-b py-6 sm:grid-cols-2">
-              <div class="">
-                <h2 class="text-lg font-semibold leading-4 text-slate-700">
-                  Reminders
-                </h2>
-                <p class="font- text-slate-600">
-                  Lorem ipsum dolor, Alias eligendi laboriosam magni reiciendis
-                  neque.
-                </p>
-              </div>
-              <div class="mt-4 flex items-center sm:justify-end">
-                <div class="flex flex-col gap-3">
-                  <label
-                    for="push"
-                    class="relative inline-flex cursor-pointer items-center"
-                  >
-                    <input
-                      type="checkbox"
-                      value=""
-                      id="push"
-                      class="peer sr-only"
-                    />
-                    <div class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                      Push
-                    </span>
-                  </label>
-                  <label
-                    for="email"
-                    class="relative inline-flex cursor-pointer items-center"
-                  >
-                    <input
-                      type="checkbox"
-                      value=""
-                      id="email"
-                      class="peer sr-only"
-                      checked
-                    />
-                    <div class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                      Email
-                    </span>
-                  </label>
-                  <label
-                    for="sms"
-                    class="relative inline-flex cursor-pointer items-center"
-                  >
-                    <input
-                      type="checkbox"
-                      value=""
-                      id="sms"
-                      class="peer sr-only"
-                    />
-                    <div class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                      SMS
-                    </span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="grid border-b py-6 sm:grid-cols-2">
-              <div class="">
-                <h2 class="text-lg font-semibold leading-4 text-slate-700">
-                  Updates
-                </h2>
-                <p class="font- text-slate-600">
-                  Lorem ipsum dolor, Alias eligendi laboriosam magni reiciendis
-                  neque.
-                </p>
-              </div>
-              <div class="mt-4 flex items-center sm:justify-end">
-                <div class="flex flex-col gap-3">
-                  <label
-                    for="push"
-                    class="relative inline-flex cursor-pointer items-center"
-                  >
-                    <input
-                      type="checkbox"
-                      value=""
-                      id="push"
-                      class="peer sr-only"
-                    />
-                    <div class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                      Push
-                    </span>
-                  </label>
-                  <label
-                    for="email"
-                    class="relative inline-flex cursor-pointer items-center"
-                  >
-                    <input
-                      type="checkbox"
-                      value=""
-                      id="email"
-                      class="peer sr-only"
-                    />
-                    <div class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                      Email
-                    </span>
-                  </label>
-                  <label
-                    for="sms"
-                    class="relative inline-flex cursor-pointer items-center"
-                  >
-                    <input
-                      type="checkbox"
-                      value=""
-                      id="sms"
-                      class="peer sr-only"
-                    />
-                    <div class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                      SMS
-                    </span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
+            </a>
+            <a href="#"
+                class="flex items-center px-3 py-2.5 font-semibold hover:text-indigo-900 hover:border hover:rounded-full  ">
+                PRO Account
+            </a>
         </div>
-      </div>
+    </aside>
+    <main class="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
+        <div class="p-2 md:p-4">
+            <div class="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
+                <h2 class="pl-6 text-2xl font-bold sm:text-xl">Public Profile</h2>
+
+                <div class="grid max-w-2xl mx-auto mt-8">
+                    <div class="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
+
+                        <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
+                            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZhY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+                            alt="Bordered avatar"/>
+
+                        <div class="flex flex-col space-y-5 sm:ml-8">
+                            <button type="button"
+                                class="py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
+                                Change picture
+                            </button>
+                            <button type="button"
+                                class="py-3.5 px-7 text-base font-medium text-indigo-900 focus:outline-none bg-white rounded-lg border border-indigo-200 hover:bg-indigo-100 hover:text-[#202142] focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
+                                Delete picture
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="items-center mt-8 sm:mt-14 text-[#202142]">
+
+                        <div
+                            class="flex flex-col items-center w-full mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+                            <div class="w-full">
+                                <label for="first_name"
+                                    class="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">Your
+                                    first name</label>
+                                <input type="text" id="first_name"
+                                    class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                                    placeholder="Your first name" value="Jane" required/>
+                            </div>
+
+                            <div class="w-full">
+                                <label for="last_name"
+                                    class="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">Your
+                                    last name</label>
+                                <input type="text" id="last_name"
+                                    class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                                    placeholder="Your last name" value="Ferguson" required/>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-2 sm:mb-6">
+                            <label for="email"
+                                class="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">Your
+                                email</label>
+                            <input type="email" id="email"
+                                class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                                placeholder="your.email@mail.com" required/>
+                        </div>
+
+                        <div class="mb-2 sm:mb-6">
+                            <label for="profession"
+                                class="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">Profession</label>
+                            <input type="text" id="profession"
+                                class="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                                placeholder="your profession" required/>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="message"
+                                class="block mb-2 text-sm font-medium text-indigo-900 dark:text-white">Bio</label>
+                            <textarea id="message" rows="4"
+                                class="block p-2.5 w-full text-sm text-indigo-900 bg-indigo-50 rounded-lg border border-indigo-300 focus:ring-indigo-500 focus:border-indigo-500 "
+                                placeholder="Write your bio here..."></textarea>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button type="submit"
+                                class="text-white bg-indigo-700  hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">Save</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
     </>
   );
 };
