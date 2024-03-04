@@ -42,6 +42,7 @@ npm run dev
 - [x] Add Syntax Highlighting for JS with CodeMirror
 - [x] Add JS execution
 - [x] Database integration
+- [x] Add challenges section
 - [ ] Add Syntax highlighting Support for other languages
 - [ ] Add Compilers for different languages
 - [ ] Add copy button for copying code
