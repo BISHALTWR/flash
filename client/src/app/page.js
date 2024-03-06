@@ -7,12 +7,19 @@ import { useSelector } from "react-redux";
 // UI imports
 import { VscVmRunning } from "react-icons/vsc";
 import { SiLevelsdotfyi } from "react-icons/si";
+import toast, { Toaster } from "react-hot-toast";
+const notify = (msg) => toast(msg);
+
 // import { GiBattleGear } from "react-icons/gi";
 import { FaBookReader } from "react-icons/fa";
 import { FaRegCircleQuestion } from "react-icons/fa6";
 
 const Card = ({ href, icon: Icon, title, description }) => (
-  <div className="xl:w-1/3 md:w-1/2 p-4">
+  <div className="xl:w-1/3 md:w-1/2 p-4" onClick={() => {
+    if (href === "#") {
+      notify("This feature is under development");
+    }
+  }}>
     <Link href={href} className="hover:underline decoration-emerald500">
       <div className="border border-gray-200 p-6 rounded-lg hover:bg-blue-100">
         <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
