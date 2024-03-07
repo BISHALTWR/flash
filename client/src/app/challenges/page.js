@@ -41,15 +41,16 @@ const page = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedChallenge, setSelectedChallenge] = useState(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
+  
   useEffect(() => {
     const fetchChallenges = async () => {
-      const fetchedChallenges = await fetchChallengesInRange(user_id, 0, 9);
+      let fetchedChallenges = await fetchChallengesInRange(user_id, 0, 9);
       setChallenges(fetchedChallenges);
+      const defaultChallenges = await fetchChallengesInRange('0',0,9);
+      setChallenges(prevChallenges => [...prevChallenges, ...defaultChallenges]);
     };
     fetchChallenges();
   }, []);
-
   const handleEyeIconClick = (challenge) => {
     setSelectedChallenge(challenge);
     onOpen();

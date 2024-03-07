@@ -28,6 +28,7 @@ const notify = (msg) => toast(msg);
 import { useSearchParams } from "next/navigation";
 
 const page = () => {
+  const Router = useRouter();
   const { isLoggedIn, userDetails } = useSelector((state) => state.user); // User details
   const user_id = userDetails._id;
   const params = useSearchParams();
@@ -116,6 +117,7 @@ const page = () => {
                         });
                         if (result === actual_output) {
                           notify("✅ Correct");
+                          Router.push('/challenges')
                         } else {
                           // console.log("Actual output: ", actual_output, "Your output: ", result);
                           notify("❌ Wrong! Try again!");
