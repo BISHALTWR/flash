@@ -11,6 +11,8 @@ const { rename } = require("../execute/rename");
 const { removeFile } = require("../execute/removeFile");
 
 const { saveChallenge } = require("../execute/saveChallenge");
+const {editChallenge} = require("../execute/editChallenge");
+const {removeChallengeByUserIdAndName} = require("../execute/removeChallenge");
 const {
   fetchChallengeById,
   fetchChallengesInRange,
@@ -30,7 +32,9 @@ router.post("/rename", rename);
 router.post("/removeFile", removeFile);
 
 router.post("/saveChallenge", saveChallenge);
+router.put('/editChallenge/:id', editChallenge);
 router.get("/fetchChallenge/:challenge_id", fetchChallengeById);
+router.delete('/removeChallenge/:user_id/:challenge_name', removeChallengeByUserIdAndName);
 // router.post("/removeChallenge", removeChallengeById);
 router.get(
   "/fetchChallengesInRange/:user_id/:lower/:upper",
