@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { registerNewUser, loginUser } = require("../controllers/users");
+const { registerNewUser, loginUser, getUserInfo, changeUserInfo} = require("../controllers/users");
 
 const { executeJS } = require("../execute/executeJS");
 const { saveCode } = require("../execute/saveCode");
@@ -23,6 +23,8 @@ const {
 
 router.post("/register", registerNewUser);
 router.post("/login", loginUser);
+router.post("/getUserInfo", getUserInfo);
+router.post('/changeUserInfo', changeUserInfo);
 
 router.post("/executeJS", executeJS);
 router.post("/saveCode", saveCode);

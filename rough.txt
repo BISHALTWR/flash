@@ -3,7 +3,7 @@ Checklist:
 2. Add deleteChallenge //done
 3. Add modal for details in challenge list //done
 4. Add somewhere around 20 challenges that admin adds which area added automatically //done
-5. Modify Setting Page, Add avatar, add user preference in schema
+5. Modify Setting Page, Add avatar, add user preference in schema // setting page modified, avatar not done, user preference not done yet
 6. Keep track of challenges that user has solved. (Maybe array of challenge id)
 7. Add a resource section with links to free resources. (Shouldn't take long)
 8. Add collaboration feature(based on groups with groupId)
