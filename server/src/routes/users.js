@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { registerNewUser, loginUser, getUserInfo, changeUserInfo} = require("../controllers/users");
+const { registerNewUser, loginUser, getUserInfo, changeUserInfo, uploadAvatar, deleteAvatar} = require("../controllers/users");
 
 const { executeJS } = require("../execute/executeJS");
 const { saveCode } = require("../execute/saveCode");
@@ -25,6 +25,8 @@ router.post("/register", registerNewUser);
 router.post("/login", loginUser);
 router.post("/getUserInfo", getUserInfo);
 router.post('/changeUserInfo', changeUserInfo);
+router.post('/uploadAvatar', uploadAvatar);
+router.delete('/deleteAvatar/:userId', deleteAvatar);
 
 router.post("/executeJS", executeJS);
 router.post("/saveCode", saveCode);

@@ -21,22 +21,24 @@ const page = () => {
     profession: "",
     bio: "",
   });
+  const [image, setImage] = useState("");
 
-useEffect(() => {
+  useEffect(() => {
     const getUserInfo = async () => {
-        const response = await fetch("http://localhost:4000/getUserInfo", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ userId: userDetails._id }),
-        });
-        const data = await response.json();
-        setUserInfo(prevState => ({...prevState, ...data}));
+      const response = await fetch("http://localhost:4000/getUserInfo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: userDetails._id }),
+      });
+      const data = await response.json();
+      setUserInfo((prevState) => ({ ...prevState, ...data }));
+      setImage(data.avatar);
     };
 
     getUserInfo();
-}, [userDetails]);
+  }, [userDetails]);
 
   const handleChange = (e) => {
     setUserInfo({
@@ -45,22 +47,53 @@ useEffect(() => {
     });
   };
 
-useEffect(() => {
-    console.log(userInfo);
-}, [userInfo]);
+  // useEffect(() => {
+  //   console.log(userInfo);
+  // }, [userInfo]);
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     console.log("monke");
     e.preventDefault();
     const response = await fetch("http://localhost:4000/changeUserInfo", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...userInfo }), // add userId to the request body
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...userInfo }), // add userId to the request body
     });
     console.log(response);
-};
+  };
+  const handleDeletePicture = async () => {
+    const response = await fetch(
+      `http://localhost:4000/deleteAvatar/${userDetails._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (response.ok) {
+      setImage("");
+    } else {
+      console.error("Failed to delete picture");
+    }
+  };
+    const handleFileChange = async (e) => {
+      const file = e.target.files[0];
+      const formData = new FormData();
+      formData.append("avatar", file);
+      formData.append("userId", userDetails._id);
+
+      const response = await fetch("http://localhost:4000/uploadAvatar", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      setImage(data.location);
+    };
+
 
   return (
     <>
@@ -105,20 +138,32 @@ const handleSubmit = async (e) => {
                 <div class="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
                   <img
                     class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
-                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZhY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+                    src={
+                      image ||
+                      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZhY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+                    }
                     alt="Bordered avatar"
                   />
 
                   <div class="flex flex-col space-y-5 sm:ml-8">
+                    <input
+                      type="file"
+                      name="avatar"
+                      id="file"
+                      onChange={handleFileChange}
+                      style={{ display: "none" }}
+                    />
                     <button
                       type="button"
                       class="py-3.5 px-7 text-base font-medium text-indigo-100 focus:outline-none bg-[#202142] rounded-lg border border-indigo-200 hover:bg-indigo-900 focus:z-10 focus:ring-4 focus:ring-indigo-200 "
+                      onClick={() => document.getElementById("file").click()}
                     >
                       Change picture
                     </button>
                     <button
                       type="button"
                       class="py-3.5 px-7 text-base font-medium text-indigo-900 focus:outline-none bg-white rounded-lg border border-indigo-200 hover:bg-indigo-100 hover:text-[#202142] focus:z-10 focus:ring-4 focus:ring-indigo-200 "
+                      onClick={handleDeletePicture}
                     >
                       Delete picture
                     </button>
@@ -256,9 +301,8 @@ const handleSubmit = async (e) => {
                         class="block p-2.5 w-full text-sm text-indigo-900 bg-indigo-50 rounded-lg border border-indigo-300 focus:ring-indigo-500 focus:border-indigo-500 "
                         placeholder="Write your bio here..."
                         onChange={handleChange}
-                        value = {userInfo ? userInfo.bio : ""}
-                      >
-                      </textarea>
+                        value={userInfo ? userInfo.bio : ""}
+                      ></textarea>
                     </div>
 
                     <div class="flex justify-end">

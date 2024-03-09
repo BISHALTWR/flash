@@ -1,8 +1,12 @@
 const express = require("express");
+const path = require('path');
 const app = express();
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
+// console.log('Serving static files from', path.join(__dirname, '../uploads'));
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
 require("dotenv").config();
 const userRoute = require("./routes/users");
 const connection = require("./db/connection");
@@ -21,7 +25,6 @@ async function populateDBWithDefaultValues() {
 }
 
 connection().then(() => {
-  console.log('Connected to the database!');
   populateDBWithDefaultValues();
 }).catch(error => {
   console.log('Connection failed!');
@@ -34,5 +37,5 @@ app.use(userRoute);
 // console.log = console.trace;
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Server listening on port ${port}`);
 });
