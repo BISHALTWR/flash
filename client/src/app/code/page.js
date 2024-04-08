@@ -31,20 +31,20 @@ const page = () => {
   const [code, setCode] = useState([]);
   const [NewFileName, setNewFileName] = useState("");
 
+  const fetchNamesAndCode = async () => {
+    const names = await fetchFileNames(user_id);
+    console.log("names received", names);
+    setFileNames([...names]);
+
+    if (names.length > 0) {
+      console.log("i am in fetch region");
+      const codes = await fetchCodeInRange(names, 1, 10, user_id);
+      console.log(codes);
+      setCode(codes);
+    }
+  };
+
   useEffect(() => {
-    const fetchNamesAndCode = async () => {
-      const names = await fetchFileNames(user_id);
-      console.log("names received", names);
-      setFileNames([...names]);
-
-      if (names.length > 0) {
-        console.log("i am in fetch region");
-        const codes = await fetchCodeInRange(names, 1, 10, user_id);
-        console.log(codes);
-        setCode(codes);
-      }
-    };
-
     fetchNamesAndCode();
   }, []);
 
@@ -69,6 +69,7 @@ const page = () => {
         console.log(data, response);
         if (response.ok) {
           notify("File created successfully ✅");
+          fetchNamesAndCode();
           // router.push(`./compiler/?filename=${file_name}`)
         }
       }
@@ -88,6 +89,7 @@ const page = () => {
               console.log(codeSnippet, "Code snippet");
               return (
                 <CodeBlock
+                  fetchNamesAndCode={fetchNamesAndCode}
                   code={codeSnippet}
                   file_name={fileNames[index]}
                   fileNames={fileNames}

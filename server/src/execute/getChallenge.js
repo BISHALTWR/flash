@@ -26,7 +26,7 @@ const fetchChallengesInRange = async (req, res) => {
       .skip(pageNumber * challengesPerPage)
       .limit(challengesPerPage);
 
-    console.log(challenges);
+    // console.log(challenges);
     res.status(200).json({ challenges }); // Send the fetched challenges as a JSON response
   } catch (error) {
     console.error("Error fetching challenges:", error);

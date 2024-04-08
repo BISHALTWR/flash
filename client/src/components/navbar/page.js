@@ -27,6 +27,7 @@ import { logoutUser } from "@/redux/reducerSlices/userSlice";
 const page = (props) => {
   const dispatch = useDispatch();
   const { isLoggedIn, userDetails } = useSelector((state) => state.user);
+  console.log(useSelector((state)=>state.user))
   return (
     <Navbar shouldHideOnScroll className="text-white bg-primary-600">
       <NavbarBrand as={Link} href="/">
@@ -68,7 +69,7 @@ const page = (props) => {
               isBordered
               as="button"
               className="transition-transform"
-              src={`https://i.pravatar.cc/150?u=${isLoggedIn ? userDetails.username.charAt(0) : "b"}`}
+              src={`${userDetails?.avatar}`}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="bordered">

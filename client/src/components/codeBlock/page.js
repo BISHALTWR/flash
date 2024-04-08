@@ -59,6 +59,7 @@ const codeBlock = (props) => {
         console.log(data, response);
         if (response.ok) {
           notify("Renamed Successfully ✅");
+          props.fetchNamesAndCode();
           //reload this page here and toast
           // or maybe try changing fileName
         }
@@ -86,6 +87,7 @@ const codeBlock = (props) => {
         console.log(data, response);
         if (response.ok) {
           notify("Deleted Successfully ✅");
+          props.fetchNamesAndCode();
           //reload or change filename
         }
       }

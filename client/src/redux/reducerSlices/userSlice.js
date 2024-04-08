@@ -4,6 +4,7 @@ const initialState = {
   token: "",
   userDetails: {},
   isLoggedIn: false,
+  avatar: ""
 };
 
 //Redux Toolkit slice
