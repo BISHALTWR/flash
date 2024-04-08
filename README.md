@@ -43,8 +43,6 @@ npm run dev
 - [x] Add JS execution
 - [x] Database integration
 - [x] Add challenges section
-- [ ] Add Syntax highlighting Support for other languages
-- [ ] Add Compilers for different languages
 - [ ] Add copy button for copying code
 - [ ] Add Profile page
 - [ ] Add feature that allows you to download code snipppets as image
